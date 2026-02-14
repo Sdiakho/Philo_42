@@ -1,0 +1,5 @@
+*.o              # Ignore tous les fichiers objets
+*.a              # Ignore les bibliothèques statiques
+a.out            # Ignore l'exécutable par défaut
+philo            # Ignore ton binaire final (ex: si ton projet s'appelle philo)
+.DS_Store        # Ignore les fichiers système macOS
