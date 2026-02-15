@@ -5,31 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 13:06:57 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 13:14:02 by monana           ###   ########.fr       */
+/*   Created: 2026/02/14 17:51:38 by monana            #+#    #+#             */
+/*   Updated: 2026/02/14 17:56:53 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putstr_fd(char *str, int fd)
+void	clean_philo(t_philo *philo)
 {
-	if (!str)
-		return ;
-	while (*str)
-	{
-		write(fd, str, 1);
-		str++;
-	}
+
 }
 
-void	error_exit_msg(t_data *data, char *msg, int status)
+
+void	clean_data()
 {
-	if (msg)
-	{
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd("\n", 2);
-	}
-	//clean_data(data);
-	exit(status);
+
+}
+
+void	clean_all()
+{
+
 }

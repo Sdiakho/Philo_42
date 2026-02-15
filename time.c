@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 13:06:57 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 13:14:02 by monana           ###   ########.fr       */
+/*   Created: 2026/02/15 15:09:41 by monana            #+#    #+#             */
+/*   Updated: 2026/02/15 18:22:49 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putstr_fd(char *str, int fd)
+long	get_time_in_ms(void)
 {
-	if (!str)
-		return ;
-	while (*str)
-	{
-		write(fd, str, 1);
-		str++;
-	}
+	struct timeval	tv;
+	long			usec_ms;
+	long			sec_ms;
+	long			time_ms;
+
+	gettimeofday(&tv, NULL);
+	usec_ms = tv.tv_usec / 1000;
+	sec_ms = tv.tv_sec * 1000;
+	time_ms = usec_ms + sec_ms;
+	return (time_ms);
 }
 
-void	error_exit_msg(t_data *data, char *msg, int status)
+void	ft_usleep(long time_in_ms, t_philo *philo)
 {
-	if (msg)
+	long	start;
+
+	start = get_time_in_ms();
+	while ((get_time_in_ms() - start) < time_in_ms)
 	{
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd("\n", 2);
+		if (check_death(philo))
+			break ;
+		usleep(500);
 	}
-	//clean_data(data);
-	exit(status);
 }

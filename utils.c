@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 13:35:49 by monana            #+#    #+#             */
-/*   Updated: 2026/02/14 17:39:12 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/14 21:41:44 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
+
+
 
 char	*ft_strlcpy(char *dst, const char *src, int n)
 {
