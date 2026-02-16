@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:21:43 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 18:37:48 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:08:56 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_death(t_philo *philo)
 {
-	int is_dead;
+	int	is_dead;
 
 	pthread_mutex_lock(&philo->data->dead_lock);
 	is_dead = philo->data->dead_flag;
@@ -28,20 +28,20 @@ void	*philo_routine(void *p_data)
 
 	philo = (t_philo *)p_data;
 	if (philo->p_id % 2 == 0)
-		ft_usleep(2, philo);
+		ft_usleep(5, philo);
 	while (!check_death(philo))
 	{
 		eat_routine(philo);
 		print_status(philo, 'S');
 		ft_usleep(philo->data->time_for_slp, philo);
-		print_status(philo, 'T');	
+		print_status(philo, 'T');
 	}
 	return (NULL);
 }
 
 void	init_thread(t_data *data, t_philo *philos, int nb_philos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < nb_philos)

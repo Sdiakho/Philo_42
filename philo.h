@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 13:01:10 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 18:38:26 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:14:18 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data
 	pthread_mutex_t	write_lock;
 }					t_data;
 
-int	check_death(t_philo *philo);
+int		check_death(t_philo *philo);
 
 /* Utils*/
 int		ft_atoi(const char *str, int *out);

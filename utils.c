@@ -6,13 +6,13 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 13:35:49 by monana            #+#    #+#             */
-/*   Updated: 2026/02/14 21:41:44 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:11:27 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -51,8 +51,8 @@ long	ft_atol(const char *str)
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		sign;
+	int	i;
+	int	sign;
 	int	res;
 
 	i = 0;
@@ -73,8 +73,6 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
-
-
 
 char	*ft_strlcpy(char *dst, const char *src, int n)
 {

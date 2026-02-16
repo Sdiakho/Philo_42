@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:01:21 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 18:24:48 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:13:56 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	is_valid(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -31,7 +31,7 @@ int	is_valid(const char *str)
 
 int	check_args(char **args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])
@@ -42,8 +42,6 @@ int	check_args(char **args)
 	}
 	return (1);
 }
-
-
 
 void	parser(t_data *data, int ac, char **av)
 {

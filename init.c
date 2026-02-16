@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:02:32 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 18:37:34 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:10:42 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,24 @@ void	init_data(t_data *data, char **args)
 	if (pthread_mutex_init((&data->write_lock), NULL) != 0)
 		error_exit_msg(data, "Mutex error", 1);
 }
+
 void	alloc_data(t_data *data)
 {
-	int i;
+	int	i;
 
 	if (!data)
 		error_exit_msg(data, "Missing datas", 1);
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
 		error_exit_msg(data, "Malloc error", 1);
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!data->forks)
 		error_exit_msg(data, "Malloc error", 1);
 	i = 0;
 	while (i < data->nb_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-			error_exit_msg(data, "Mutex error", 1);
+			error_fork(data, "Mutex error", i);
 		i++;
 	}
 }
@@ -63,7 +64,7 @@ void	fill_philo(t_data *data, t_philo *philo, int i)
 
 void	init_philo(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!data)

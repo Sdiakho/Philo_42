@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:42:09 by monana            #+#    #+#             */
-/*   Updated: 2026/02/15 12:59:47 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/16 17:12:10 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ long	ft_atol(const char *str, int *out)
 	return (*out = (res * sign), 1);
 }
 
-int		ft_atoi(const char *str, int *out)
+int	ft_atoi(const char *str, int *out)
 {
 	int	res;
 	int	sign;
@@ -69,5 +69,5 @@ int		ft_atoi(const char *str, int *out)
 		str++;
 	if (*str)
 		return (0);
-	return (*out = (res *sign), 1);
+	return (*out = (res * sign), 1);
 }
