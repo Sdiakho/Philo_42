@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:02:32 by monana            #+#    #+#             */
-/*   Updated: 2026/02/18 12:32:54 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/18 16:15:21 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_data(t_data *data)
 {
 	data->nb_philos = -1;
-	data->top_start = get_time_in_ms();
+	data->top_start = -1;
 	data->time_for_die = -1;
 	data->time_for_eat = -1;
 	data->time_for_slp = -1;

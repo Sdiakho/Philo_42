@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:38:32 by monana            #+#    #+#             */
-/*   Updated: 2026/02/18 12:49:31 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/18 16:15:11 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ void	dead_routine(t_data *data, int i)
 	printf("%ld %d died\n", cur_time, data->philos[i].p_id);
 	pthread_mutex_unlock(&data->write_lock);
 	pthread_mutex_unlock(&data->philos[i].meal_lock);
+	return ;
+}
+
+void	eat_alone(t_philo *philo, pthread_mutex_t *fk_1)
+{
+	pthread_mutex_lock(fk_1);
+	print_status(philo, 'F');
+	pthread_mutex_unlock(fk_1);
+	ft_usleep(philo->data->time_for_die, philo);
 	return ;
 }
 
@@ -56,6 +65,11 @@ void	*philo_routine(void *p_data)
 	t_philo	*philo;
 
 	philo = (t_philo *)p_data;
+	if (philo->data->nb_philos == 1)
+	{
+		eat_alone(philo, philo->right_fork);
+		return (NULL);
+	}
 	if (philo->p_id % 2 == 0)
 		ft_usleep(5, philo);
 	while (!check_death(philo))
@@ -64,6 +78,7 @@ void	*philo_routine(void *p_data)
 		print_status(philo, 'S');
 		ft_usleep(philo->data->time_for_slp, philo);
 		print_status(philo, 'T');
+		ft_usleep(2, philo);
 	}
 	return (NULL);
 }
