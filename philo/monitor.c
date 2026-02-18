@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 13:29:12 by monana            #+#    #+#             */
-/*   Updated: 2026/02/18 11:22:39 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/18 12:50:06 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	check_monitor(t_data *data)
 			time_since_eat = get_time_in_ms() - data->philos[i].last_meal_time;
 			if (time_since_eat >= data->time_for_die)
 				return (dead_routine(data, i));
-			if (data->max_meals != -1 && data->philos[i].meals_eaten >= data->max_meals)
+			if (data->max_meals != -1
+				&& data->philos[i].meals_eaten >= data->max_meals)
 				philo_feeded += 1;
 			pthread_mutex_unlock(&data->philos[i].meal_lock);
 			i++;

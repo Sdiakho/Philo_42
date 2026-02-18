@@ -6,7 +6,7 @@
 /*   By: monana <monana@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:38:32 by monana            #+#    #+#             */
-/*   Updated: 2026/02/18 11:21:27 by monana           ###   ########.fr       */
+/*   Updated: 2026/02/18 12:49:31 by monana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	dead_routine(t_data *data, int i)
 	return ;
 }
 
-static void	eat_mutex(t_philo *philo, pthread_mutex_t *fk_1, pthread_mutex_t *fk_2)
+void	eat_mutex(t_philo *philo, pthread_mutex_t *fk_1, pthread_mutex_t *fk_2)
 {
 	pthread_mutex_lock(fk_1);
 	print_status(philo, 'F');
