@@ -1,3 +1,4 @@
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffcccc', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff0f0'}}}%%
 sequenceDiagram
     autonumber
@@ -37,6 +38,7 @@ sequenceDiagram
             Note over P,M: ARRÊT DE LA SIMULATION
         end
     end
+```
 *This project has been created as part of the 42 curriculum by sdiakho (monana is my personal computer).*
 
 ## Description
