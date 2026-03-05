@@ -1,44 +1,10 @@
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffcccc', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff0f0'}}}%%
-sequenceDiagram
-    autonumber
-    participant M as Monitor (Main Thread)
-    actor P as Philosopher (Thread i)
-    participant FL as Fork Left (Mutex i)
-    participant FR as Fork Right (Mutex i+1)
+██████╗ ██╗  ██╗██╗██╗      ██████╗ ███████╗ ██████╗ ██████╗ ██╗  ██╗███████╗██████╗ ███████╗
+██╔══██╗██║  ██║██║██║     ██╔═══██╗██╔════╝██╔═══██╗██╔══██╗██║  ██║██╔════╝██╔══██╗██╔════╝
+██████╔╝███████║██║██║     ██║   ██║███████╗██║   ██║██████╔╝███████║█████╗  ██████╔╝███████╗
+██╔═══╝ ██╔══██║██║██║     ██║   ██║╚════██║██║   ██║██╔═══╝ ██╔══██║██╔══╝  ██╔══██╗╚════██║
+██║     ██║  ██║██║███████╗╚██████╔╝███████║╚██████╔╝██║     ██║  ██║███████╗██║  ██║███████║
+╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
 
-    Note over P: State: THINKING
-
-    par Accès aux ressources
-        P->>FL: pthread_mutex_lock()
-        Note right of P: Prend la fourchette gauche
-    and
-        P->>FR: pthread_mutex_lock()
-        Note right of P: Prend la fourchette droite
-    end
-
-    Note over P: State: EATING<br/>(Dure time_to_eat)
-    P->>M: Met à jour 'last_meal_time'<br/>(Protégé par meal_lock)
-
-    P->>FR: pthread_mutex_unlock()
-    P->>FL: pthread_mutex_unlock()
-    Note over P: State: SLEEPING<br/>(Dure time_to_sleep)
-
-    Note over P: State: THINKING
-
-    loop Surveillance constante (Monitor Loop)
-        M->>P: Vérifie 'last_meal_time'
-        alt temps actuel - last_meal_time > time_to_die
-            Note over M: Philosophe i est mort !
-            M->>P: Set 'dead_flag' = 1
-            Note over P,M: ARRÊT DE LA SIMULATION
-        else Tous les philosophes ont mangé 'must_eat' fois
-            Note over M: Condition de repas atteinte
-            M->>P: Set 'dead_flag' = 1
-            Note over P,M: ARRÊT DE LA SIMULATION
-        end
-    end
-```
 *This project has been created as part of the 42 curriculum by sdiakho (monana is my personal computer).*
 
 ## Description
@@ -97,3 +63,45 @@ The program relies on a strict separation between the execution threads and a ce
          │
          └─> Reads shared variables protected by `meal_lock`.
          └─> Triggers `dead_flag` to safely stop all threads.
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffcccc', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff0f0'}}}%%
+sequenceDiagram
+    autonumber
+    participant M as Monitor (Main Thread)
+    actor P as Philosopher (Thread i)
+    participant FL as Fork Left (Mutex i)
+    participant FR as Fork Right (Mutex i+1)
+
+    Note over P: State: THINKING
+
+    par Accès aux ressources
+        P->>FL: pthread_mutex_lock()
+        Note right of P: Prend la fourchette gauche
+    and
+        P->>FR: pthread_mutex_lock()
+        Note right of P: Prend la fourchette droite
+    end
+
+    Note over P: State: EATING<br/>(Dure time_to_eat)
+    P->>M: Met à jour 'last_meal_time'<br/>(Protégé par meal_lock)
+
+    P->>FR: pthread_mutex_unlock()
+    P->>FL: pthread_mutex_unlock()
+    Note over P: State: SLEEPING<br/>(Dure time_to_sleep)
+
+    Note over P: State: THINKING
+
+    loop Surveillance constante (Monitor Loop)
+        M->>P: Vérifie 'last_meal_time'
+        alt temps actuel - last_meal_time > time_to_die
+            Note over M: Philosophe i est mort !
+            M->>P: Set 'dead_flag' = 1
+            Note over P,M: ARRÊT DE LA SIMULATION
+        else Tous les philosophes ont mangé 'must_eat' fois
+            Note over M: Condition de repas atteinte
+            M->>P: Set 'dead_flag' = 1
+            Note over P,M: ARRÊT DE LA SIMULATION
+        end
+    end
+```
